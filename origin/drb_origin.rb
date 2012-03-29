@@ -51,6 +51,7 @@ module ODRbProtocol
   end
 
   def send_request(soc, ref,msg_id, *arg)
+    p "send_request: #{soc}, #{ref},#{msg_id}, #{arg.inspect}"
     dump(ref, soc)
     dump(msg_id.id2name, soc)
     dump(arg.length, soc)
@@ -60,12 +61,14 @@ module ODRbProtocol
   end
   
   def recv_reply(soc)
+    p "recv_reply: #{soc}"
     succ = Marshal::load(soc)
     result = Marshal::load(soc)
     [succ, result]
   end
 
   def recv_request(soc)
+    p "recv_request: #{soc}"
     ro = Marshal::load(soc)
     msg = Marshal::load(soc)
     argc = Marshal::load(soc)
@@ -73,7 +76,9 @@ module ODRbProtocol
     argc.times do
       argv.push Marshal::load(soc)
     end
-    [ro, msg, argv]
+    r = [ro, msg, argv]
+    p r
+    r
   end
 
   def send_reply(soc, succ, result)

@@ -1,5 +1,5 @@
 require './drb_origin.rb'
-a = {}
+a = []
 ODRb.start_service('druby://localhost:7640', a)
 loop do
   sleep 1
@@ -11,4 +11,3 @@ ODRb.thread.join
 # require './drb_origin'
 # ODRb.start_service('druby://localhost:7640', {})
 # o = ODRbObject.new(nil, 'druby://localhost:7640')
-# o["hello"] = "world"
