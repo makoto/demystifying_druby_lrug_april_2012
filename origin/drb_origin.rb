@@ -8,7 +8,6 @@
 =end
 
 require 'socket'
-require 'marshal'
 
 module ODRb
   def start_service(uri, front=nil)
@@ -160,30 +159,3 @@ class ODRbServer
     end
   end
 end
-
-
-
-drbs.rb
-#!/usr/local/bin/ruby
-
-require 'drb.rb'
-
-class ODRbEx
-  def initialize
-    @hello = 'hello'
-  end
-
-  def hello
-    @hello
-  end
-
-  def sample(a, b, c)
-    a.to_i + b.to_i + c.to_i
-  end
-end
-
-if __FILE__ == $0
-  ODRb.start_service('druby://localhost:7640', ODRbEx.new)
-  ODRb.thread.join
-end
-
