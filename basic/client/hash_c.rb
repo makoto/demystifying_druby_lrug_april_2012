@@ -4,8 +4,7 @@ require 'pp'
 DRb.start_service
 remote = DRbObject.new_with_uri('druby://localhost:7640')
 
-remote['remote_foo'] = 'foo'
-remote['remote_proc'] = Proc.new{ `pwd`}
+remote['cilent_proc'] = Proc.new{ `pwd`}
 
-remote['front_proc'][]
-remote['remote_proc'][]
+remote['server_proc'][]
+remote['clientproc'][]
