@@ -67,8 +67,8 @@
 # Basic of dRuby
 
 * Distributed Ruby
-* Proxy to remote object
 * Part of Ruby Standard libraries
+* Proxy to remote object
 
 !SLIDE
 # Basic of dRuby
@@ -131,17 +131,19 @@
     ruby  ~/.rvm/src/ruby-1.9.3-p0/sample/drb/drchats.rb
     ruby  ~/.rvm/src/ruby-1.9.3-p0/sample/drb/drchatc.rb
 
-!SLIDE
+!SLIDE bullets 
 
 # Internal of dRuby
 ## The first dRuby
 
 * [160 lines of code](http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-list/15406)   
 
+!SLIDE bullets 
+
 # Internal of dRuby
 ## Code Reading
 
-* origin/drb_origin.rb_
+* origin/drb\_origin.rb
 
 !SLIDE bullets incremental
 
@@ -153,22 +155,30 @@
 * If failed to dump, pass reference
 * soc.write(str) to send 
 
-!SLIDE
+!SLIDE bullets incremental
 # Pass by Value, Pass by Reference
 ## Thing you can not Marshial.dump
 
 * IO,File, Socket, etc
 * Proc
 
+!SLIDE bullets
 # Pass by Value, Pass by Reference
-## Thing you can not Marshial.dump
+## Example(Proc)
 
-* Run proc_s.rb and proc_c.rb from irb
+* Run proc\_s.rb and proc\_c.rb from irb
+
+!SLIDE bullets
+# Pass by Value, Pass by Reference
+## Example(each)
+
+* Run array\_s.rb and array\_c.rb
 
 !SLIDE
-# Pass by Value, Pass by Reference
+# Example(each)
 
-* Run array_s.rb and array_c.rb
+![](each.png)
+
 
 
 
