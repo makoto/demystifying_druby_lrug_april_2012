@@ -4,7 +4,6 @@ class Foo
 
   def pwd
     r = `pwd`
-    p r
     r
   end
 end

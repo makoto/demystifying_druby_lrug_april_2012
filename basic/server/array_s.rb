@@ -1,6 +1,6 @@
 require 'drb'
 require '../client/foo'
-arry = Array.new(10){ Foo.new}
+arry = Array.new(10){ Proc.new{`pwd`}}
 
 DRb.start_service('druby://localhost:7640', arry)
 DRb.thread.join
