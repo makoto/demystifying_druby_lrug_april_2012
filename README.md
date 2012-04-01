@@ -1,9 +1,9 @@
 !SLIDE bullets
 # Demystifying dRuby #
 
-!["http://pragprog.com/book/sidruby/the-druby-book"](sidruby.jpeg)
+!["http://pragprog.com/book/sidruby/the-druby-book"](slide/sidruby.jpeg)
 
-* @makoto_inoue (@newbamboo)
+* @makoto_inoue (@newbamboo) 
 
 !SLIDE bullets incremental
 # Who is Masatoshi Seki? #
@@ -19,29 +19,29 @@
 # Who is Masatoshi Seki? #
 ## PokeMon Master
 
-![pokemon](pokemon.png)
+![pokemon](slide/pokemon.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## PokeMon Master
 
-![pokemonwcs](pokemonwcs2010.png)
+![pokemonwcs](slide/pokemonwcs2010.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Artist
 
-![](magazine.png)
+![](slide/magazine.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Resembles?
 
-![](magazine.png)
-![](imgres.jpeg)
+![](slide/magazine.png)
+![](slide/imgres.jpeg)
 
 !SLIDE bullets incremental
 
@@ -178,7 +178,7 @@
 !SLIDE
 # Example(each)
 
-![](each.png)
+![](slide/each.png)
 
 !SLIDE bullets incremental
 # Rinda
@@ -233,7 +233,7 @@
 # Rinda
 ## Example
 
-![](factorial.png)
+![](slide/factorial.png)
 
 !SLIDE 
 # Rinda
@@ -292,7 +292,7 @@
 # Drip
 ## Example
 
-![](drip.png)
+![](slide/drip.png)
 
 !SLIDE
 # Summary
@@ -300,10 +300,11 @@
 * dRuby = Feels like Ruby
 * Rinda = Cool pattern matching
 * Drip = Immutable datastore
-
-!SLIDE
+[(./
+!SLIDE bullets
 # Thank you
 
-!["http://pragprog.com/book/sidruby/the-druby-book"](sidruby.jpeg)
-
+* PROMOCODE(20% off till 10th April)
+!["http://pragprog.com/book/sidruby/the-druby-book"[(./sidruby.jpeg)
+* @makoto_inoue
 
