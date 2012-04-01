@@ -1,9 +1,12 @@
 !SLIDE bullets
 # Demystifying dRuby #
 
-!["http://pragprog.com/book/sidruby/the-druby-book"](slide/sidruby.jpeg)
+<a href="http://pragprog.com/book/sidruby/the-druby-book">
+!["the dRuby book"](slide/sidruby.jpeg)
+</a>
 
-* @makoto_inoue (@newbamboo) 
+* [@makoto_inoue](https://twitter.com/makoto_inoue) ([@newbamboo](https://twitter.com/newbamboo)) 
+* [LRUG April 2012](http://lrug.org/meetings/2012/03/26/april-2012-meeting/)
 
 !SLIDE bullets incremental
 # Who is Masatoshi Seki? #
@@ -144,7 +147,7 @@
 # Internal of dRuby
 ## Code Reading
 
-* origin/drb\_origin.rb
+* [origin/drb\_origin.rb](origin/drb_origin.rb)
 
 !SLIDE bullets incremental
 
@@ -167,13 +170,13 @@
 # Pass by Value, Pass by Reference
 ## Example(Proc)
 
-* Run proc\_s.rb and proc\_c.rb from irb
+* Run [hash\_s.rb](basic/server/hash_s.rb) and [hash\_c.rb](basic/client/hash_c.rb) from irb
 
 !SLIDE bullets
 # Pass by Value, Pass by Reference
 ## Example(each)
 
-* Run array\_s.rb and array\_c.rb
+* Run [array\_s.rb](basic/server/array_s.rb) and [array\_c.rb](basic/client/array_c.rb)
 
 !SLIDE
 # Example(each)
@@ -300,11 +303,13 @@
 * dRuby = Feels like Ruby
 * Rinda = Cool pattern matching
 * Drip = Immutable datastore
-[(./
+
 !SLIDE bullets
 # Thank you
 
 * PROMOCODE(20% off till 10th April)
-!["http://pragprog.com/book/sidruby/the-druby-book"[(./sidruby.jpeg)
-* @makoto_inoue
+<a href="http://pragprog.com/book/sidruby/the-druby-book">
+!["the dRuby book"](slide/sidruby.jpeg)
+</a>
+* [@makoto_inoue](https://twitter.com/makoto_inoue) 
 
