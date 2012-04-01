@@ -67,6 +67,7 @@
 # Basic of dRuby
 
 * Distributed Ruby
+* 100% written in Ruby
 * Part of Ruby Standard libraries
 * Proxy to remote object
 
@@ -179,7 +180,130 @@
 
 ![](each.png)
 
+!SLIDE bullets incremental
+# Rinda
+
+* Process Coordination Mechanism
+* Port of Linda
+* Distributed TupleSpace
+* Share via dRuby
+
+!SLIDE 
+# Rinda
+## TupleSpace
+
+    @@@ ruby
+    ['abc', 2, 5]
+    [:matrix, 1,6, 3.14]
+    ['family', 'is-sister', 'Carolyn']
+
+!SLIDE bullets incremental
+# Rinda
+## Operations
+
+* write
+* read
+* take = read+delete
+
+!SLIDE bullets incremental
+# Rinda
+## Example
+
+    @@@ ruby
+    require "rinda/tuplespace"
+    ts = Rinda::TupleSpace.new 
+    ts.take(["take-test", nil])
+    ts.write(["take-test", 1])
+
+!SLIDE bullets incremental
+# Rinda
+## Example
 
 
+
+!SLIDE 
+# Rinda
+## Pattern Matching
+
+    @@@ ruby
+    ts.take([/add|sub/, Integer])
+    ts.take([nil, (10..Float::INFINITY)])
+
+!SLIDE 
+# Rinda
+## Example
+
+![](factorial.png)
+
+!SLIDE 
+# Rinda
+## ===
+
+    @@@ ruby
+    class Njet
+      def initialize(value)
+        @value = value
+      end
+
+      def ===(other)
+        ! (@value === other)
+      end
+    end
+    ts.take['age', Njet.new(23)]
+
+
+!SLIDE bullets incremental
+# Rinda
+## Other features
+
+* notify (trigger)
+* Hash API
+* Ring (Name Server)
+
+!SLIDE bullets incremental
+# Seki san's current expriment
+
+* PTupleSpace (2007) = Persisted tuplespace
+* MapReduce, OODB (2009)
+* Drip (2011) = Streaming based storage
+
+!SLIDE bullets incremental
+# Drip
+
+* Append Only
+* Hash with History
+* Recoverable Queue
+* Multicast
+
+!SLIDE
+# Drip
+## Write bullet
+
+* write(obj, *tags)
+
+!SLIDE bullets
+# Drip
+## Read
+
+* read(key, n=1, at\_least=1, timeout=nil)
+* head, older, newer, read\_tag
+
+!SLIDE
+# Drip
+## Example
+
+![](drip.png)
+
+!SLIDE
+# Summary
+
+* dRuby = Feels like Ruby
+* Rinda = Cool pattern matching
+* Drip = Immutable datastore
+
+!SLIDE
+# Thank you
+
+!["http://pragprog.com/book/sidruby/the-druby-book"](sidruby.jpeg)
 
 
