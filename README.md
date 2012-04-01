@@ -1,8 +1,7 @@
 !SLIDE bullets
 # Demystifying dRuby #
-
 <a href="http://pragprog.com/book/sidruby/the-druby-book">
-!["the dRuby book"](./slide/sidruby.jpeg)
+!["the dRuby book"](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/sidruby.jpeg)
 </a>
 
 * [@makoto_inoue](https://twitter.com/makoto_inoue) ([@newbamboo](https://twitter.com/newbamboo)) 
@@ -22,29 +21,29 @@
 # Who is Masatoshi Seki? #
 ## PokeMon Master
 
-![pokemon](./slide/pokemon.png)
+![pokemon](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/pokemon.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## PokeMon Master
 
-![pokemonwcs](./slide/pokemonwcs2010.png)
+![pokemonwcs](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/pokemonwcs2010.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Artist
 
-![](./slide/magazine.png)
+![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/magazine.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Resembles?
 
-![](./slide/magazine.png)
-![](./slide/imgres.jpeg)
+![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/magazine.png)
+![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/imgres.jpeg)
 
 !SLIDE bullets incremental
 
@@ -122,9 +121,9 @@
 
     @@@ sh
     [.rvm]$ find . -name 'drb' -print
-    ./src/ruby-1.9.3-p0/lib/drb
-    ./src/ruby-1.9.3-p0/sample/drb
-    ./src/ruby-1.9.3-p0/test/drb
+    https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/src/ruby-1.9.3-p0/lib/drb
+    https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/src/ruby-1.9.3-p0/sample/drb
+    https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/src/ruby-1.9.3-p0/test/drb
 
 !SLIDE
 
@@ -181,7 +180,7 @@
 !SLIDE
 # Example(each)
 
-![](./slide/each.png)
+![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/each.png)
 
 !SLIDE bullets incremental
 # Rinda
@@ -236,7 +235,7 @@
 # Rinda
 ## Example
 
-![](./slide/factorial.png)
+![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/factorial.png)
 
 !SLIDE 
 # Rinda
@@ -295,7 +294,7 @@
 # Drip
 ## Example
 
-![](./slide/drip.png)
+![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/drip.png)
 
 !SLIDE
 # Summary
@@ -309,7 +308,7 @@
 
 * PROMOCODE(20% off till 10th April)
 <a href="http://pragprog.com/book/sidruby/the-druby-book">
-!["the dRuby book"](./slide/sidruby.jpeg)
+!["the dRuby book"](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/sidruby.jpeg)
 </a>
 * [@makoto_inoue](https://twitter.com/makoto_inoue) 
 
