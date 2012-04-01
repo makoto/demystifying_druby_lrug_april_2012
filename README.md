@@ -2,7 +2,7 @@
 # Demystifying dRuby #
 
 <a href="http://pragprog.com/book/sidruby/the-druby-book">
-!["the dRuby book"](slide/sidruby.jpeg)
+!["the dRuby book"](./slide/sidruby.jpeg)
 </a>
 
 * [@makoto_inoue](https://twitter.com/makoto_inoue) ([@newbamboo](https://twitter.com/newbamboo)) 
@@ -22,29 +22,29 @@
 # Who is Masatoshi Seki? #
 ## PokeMon Master
 
-![pokemon](slide/pokemon.png)
+![pokemon](./slide/pokemon.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## PokeMon Master
 
-![pokemonwcs](slide/pokemonwcs2010.png)
+![pokemonwcs](./slide/pokemonwcs2010.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Artist
 
-![](slide/magazine.png)
+![](./slide/magazine.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Resembles?
 
-![](slide/magazine.png)
-![](slide/imgres.jpeg)
+![](./slide/magazine.png)
+![](./slide/imgres.jpeg)
 
 !SLIDE bullets incremental
 
@@ -181,7 +181,7 @@
 !SLIDE
 # Example(each)
 
-![](slide/each.png)
+![](./slide/each.png)
 
 !SLIDE bullets incremental
 # Rinda
@@ -236,7 +236,7 @@
 # Rinda
 ## Example
 
-![](slide/factorial.png)
+![](./slide/factorial.png)
 
 !SLIDE 
 # Rinda
@@ -295,7 +295,7 @@
 # Drip
 ## Example
 
-![](slide/drip.png)
+![](./slide/drip.png)
 
 !SLIDE
 # Summary
@@ -309,7 +309,7 @@
 
 * PROMOCODE(20% off till 10th April)
 <a href="http://pragprog.com/book/sidruby/the-druby-book">
-!["the dRuby book"](slide/sidruby.jpeg)
+!["the dRuby book"](./slide/sidruby.jpeg)
 </a>
 * [@makoto_inoue](https://twitter.com/makoto_inoue) 
 
