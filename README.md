@@ -105,6 +105,13 @@
     there = DRbObject.new_with_uri('druby://:12345')
     there.puts("hello world")
 
+!SLIDE bullets
+# Basics of dRuby
+## Example
+
+* [http://www.screenr.com/embed/lO18](http://www.screenr.com/embed/lO18)
+  <iframe src="http://www.screenr.com/embed/lO18" width="650" height="396" frameborder="0"></iframe>
+
 !SLIDE bullets incremental
 # Basics of dRuby
 ## What you just learnt
@@ -231,6 +238,15 @@
 
     DRb.thread.join
 
+
+!SLIDE bullets
+
+# Proc Example
+
+* [http://www.screenr.com/embed/ZO18](http://www.screenr.com/embed/ZO18)
+
+  <iframe src="http://www.screenr.com/embed/ZO18" width="650" height="396" frameborder="0"></iframe>
+
 !SLIDE bullets incremental
 
 # Proc Example
@@ -258,6 +274,13 @@
     arry = DRbObject.new_with_uri('druby://:7640')
 
     arry.each{|a| p `pwd`; a[]}
+
+!SLIDE bullets 
+# Enumerable Example
+
+* [http://www.screenr.com/kO18](http://www.screenr.com/kO18)
+
+  <iframe src="http://www.screenr.com/embed/kO18" width="650" height="396" frameborder="0"></iframe>
 
 !SLIDE
 # Enumerable Example
