@@ -1,7 +1,7 @@
 !SLIDE bullets
 # Demystifying dRuby #
 <a href="http://pragprog.com/book/sidruby/the-druby-book">
-!["the dRuby book"](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/sidruby.jpeg)
+![the dRuby book](./slide/sidruby.jpeg)
 </a>
 
 * [@makoto_inoue](https://twitter.com/makoto_inoue) ([@newbamboo](https://twitter.com/newbamboo)) 
@@ -14,36 +14,36 @@
 * Ruby core committer (Rubyist since 1998)
 * C by Day, Ruby by Night
 * Never used Rails (Can't install!!)
-* PokeMon Master
+* Pokemon Master
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
-## PokeMon Master
+## Pokemon Master
 
-![pokemon](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/pokemon.png)
+![pokemon](./slide/pokemon.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
-## PokeMon Master
+## Pokemon Master
 
-![pokemonwcs](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/pokemonwcs2010.png)
+![pokemonwcs](./slide/pokemonwcs2010.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Artist
 
-![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/magazine.png)
+![](./slide/magazine.png)
 
 !SLIDE bullets incremental
 
 # Who is Masatoshi Seki? #
 ## Resembles?
 
-![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/magazine.png)
-![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/imgres.jpeg)
+![](./slide/magazine.png)
+![](./slide/imgres.jpeg)
 
 !SLIDE bullets incremental
 
@@ -51,22 +51,22 @@
 
 * dRuby == Creative & fun
 * Mastering dRuby == Mastering Ruby
-* (buy the book)
+* Please buy the book(promo code in the last slide)
 
 !SLIDE bullets incremental
 
 # Topics
 
-* Basic of dRuby
-* Internal of dRuby
+* Basics of dRuby
+* Internals of dRuby
 * Pass by value, Pass by reference
 * Rinda
-* Drip (if I have enough time)
+* Drip
 
 
 !SLIDE bullets incremental
 
-# Basic of dRuby
+# Basics of dRuby
 
 * Distributed Ruby
 * 100% written in Ruby
@@ -74,7 +74,7 @@
 * Proxy to remote object
 
 !SLIDE
-# Basic of dRuby
+# Basics of dRuby
 ## Server
 
     @@@ ruby
@@ -90,16 +90,14 @@
     end
 
 !SLIDE
-# Basic of dRuby
+# Basics of dRuby
 ## Server
     
     @@@ ruby
-    uri = ARGV.shift
     DRb.start_service(uri, Puts.new)                            
-    DRb.thread.join()
 
 !SLIDE
-# Basic of dRuby
+# Basics of dRuby
 ## Client
 
     @@@ ruby
@@ -108,7 +106,7 @@
     there.puts("hello world")
 
 !SLIDE bullets incremental
-# Basic of dRuby
+# Basics of dRuby
 ## What you just learnt
 
 - DRb.start_service
@@ -116,18 +114,18 @@
 - DRb.thread.join()
 
 !SLIDE
-# Internal of dRuby
+# Internals of dRuby
 ## Where is the source?
 
     @@@ sh
     [.rvm]$ find . -name 'drb' -print
-    https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/src/ruby-1.9.3-p0/lib/drb
-    https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/src/ruby-1.9.3-p0/sample/drb
-    https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/src/ruby-1.9.3-p0/test/drb
+    ./src/ruby-1.9.3-p0/lib/drb
+    ./src/ruby-1.9.3-p0/sample/drb
+    ./src/ruby-1.9.3-p0/test/drb
 
 !SLIDE
 
-# Internal of dRuby
+# Internals of dRuby
 ## Let's play with same samples  
 
     @@@ sh
@@ -136,51 +134,151 @@
 
 !SLIDE bullets 
 
-# Internal of dRuby
+# Internals of dRuby
 ## The first dRuby
 
 * [160 lines of code](http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-list/15406)   
 
 !SLIDE bullets 
 
-# Internal of dRuby
+# Internals of dRuby
 ## Code Reading
 
 * [origin/drb\_origin.rb](origin/drb_origin.rb)
 
+
+!SLIDE
+
+# Internals of dRuby
+## method\_missing
+
+    @@@ruby
+    class DRbObject
+      def method_missing(msg_id, *a)
+        succ, result = DRbConn.new(@uri).
+          send_message(self, msg_id, *a)
+        raise result if ! succ
+        result
+      end
+    
+
+!SLIDE
+
+# Internals of dRuby
+## Marshall::Dump
+
+    @@@ruby
+    module DRbProtocol
+      def dump(obj, soc)
+        begin
+          str = Marshal::dump(obj)
+
+!SLIDE
+
+# Internals of dRuby
+## DRbObject.new(obj)
+
+    @@@ruby
+        rescue
+          ro = DRbObject.new(obj)
+          str = Marshal::dump(ro)
+        end
+        soc.write(str) if soc
+        return str
+      end
+    end
+
 !SLIDE bullets incremental
 
-# Internal of dRuby
+# Internals of dRuby
 ## What you learnt
 
 * method_missing as proxy
 * Marshal.dump everything
 * If failed to dump, pass reference
-* soc.write(str) to send 
 
 !SLIDE bullets incremental
 # Pass by Value, Pass by Reference
-## Thing you can not Marshial.dump
+## Things you can not Marshal.dump
 
 * IO,File, Socket, etc
 * Proc
 
 !SLIDE bullets
-# Pass by Value, Pass by Reference
-## Example(Proc)
+# Proc Example
+## [Server](basic/server/hash_s.rb)
 
-* Run [hash\_s.rb](basic/server/hash_s.rb) and [hash\_c.rb](basic/client/hash_c.rb) from irb
-
-!SLIDE bullets
-# Pass by Value, Pass by Reference
-## Example(each)
-
-* Run [array\_s.rb](basic/server/array_s.rb) and [array\_c.rb](basic/client/array_c.rb)
+    @@@ruby
+    front = {}
+    DRb.start_service('druby://:7640', front)
+    server_proc = Proc.new{ `pwd`}
+    front['server_proc'] = server_proc
+    while true
+      sleep 1; puts "\n"; pp front;
+      front.each { |k,v| p "#{k}:  #{v[]}"}
+    end
 
 !SLIDE
-# Example(each)
+# Proc Example
+## [Client](basic/client/hash_c.rb)
 
-![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/each.png)
+    @@@ruby
+    DRb.start_service
+    remote = DRbObject.new_with_uri('druby://:7640')
+
+    client_proc = Proc.new{`pwd`}
+    remote['client_proc'] = client_proc
+
+    DRb.thread.join
+
+!SLIDE bullets incremental
+
+# Proc Example
+## What you learnt
+
+* Client is also Server
+* DRbObject keeps reference
+
+!SLIDE
+# Enumerable Example
+## [Server](basic/server/array_s.rb)
+
+    @@@ruby
+    require 'drb'
+    arry = Array.new(10){ Proc.new{ p `pwd`}}
+    DRb.start_service('druby://:7640', arry)
+    DRb.thread.join
+
+!SLIDE
+# Enumerable Example
+## [Client](basic/client/array_c.rb)
+
+    require 'drb'
+    DRb.start_service
+    arry = DRbObject.new_with_uri('druby://:7640')
+
+    arry.each{|a| p `pwd`; a[]}
+
+!SLIDE
+# Enumerable Example
+
+![](./slide/each.png)
+
+!SLIDE bullets incremental
+
+# Enumerable Example
+## What you learnt
+
+* "each" happens locally
+* "yield" happens remotely
+* No "deadlock" thanks to Thread
+
+!SLIDE bullets incremental
+# dRuby - use case
+
+* [Battleship](http://lrug.org/meetings/2011/09/)
+* Testing, Debugging, Monitoring utilities
+* Network server for embedded tool(eg: Sqlite)
 
 !SLIDE bullets incremental
 # Rinda
@@ -204,24 +302,27 @@
 ## Operations
 
 * write
-* read
+* read, read\_all
 * take = read+delete
 
-!SLIDE bullets incremental
+!SLIDE
+# Rinda
+## [Example](basic/server/rinda_ts.rb) (TupleSpace)
+
+    @@@ruby
+    require 'drb/drb'
+    require 'rinda/tuplespace'
+    ts = Rinda::TupleSpace.new
+    DRb.start_service('druby://:7641', ts)
+    DRb.thread.join
+
+!SLIDE bullets
 # Rinda
 ## Example
 
-    @@@ ruby
-    require "rinda/tuplespace"
-    ts = Rinda::TupleSpace.new 
-    ts.take(["take-test", nil])
-    ts.write(["take-test", 1])
+* [http://www.screenr.com/Bp18](http://www.screenr.com/Bp18)
 
-!SLIDE bullets incremental
-# Rinda
-## Example
-
-
+  <iframe src="http://www.screenr.com/embed/Bp18" width="650" height="396" frameborder="0"></iframe>
 
 !SLIDE 
 # Rinda
@@ -230,12 +331,6 @@
     @@@ ruby
     ts.take([/add|sub/, Integer])
     ts.take([nil, (10..Float::INFINITY)])
-
-!SLIDE 
-# Rinda
-## Example
-
-![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/factorial.png)
 
 !SLIDE 
 # Rinda
@@ -263,40 +358,96 @@
 * Ring (Name Server)
 
 !SLIDE bullets incremental
-# Seki san's current expriment
+
+# Rinda - use case
+
+* Simple task management tools
+* Use it with "fork"(gem install rinda_eval)
+
+!SLIDE bullets incremental
+# Seki san's current experiment
 
 * PTupleSpace (2007) = Persisted tuplespace
 * MapReduce, OODB (2009)
-* Drip (2011) = Streaming based storage
-
-!SLIDE bullets incremental
-# Drip
-
-* Append Only
-* Hash with History
-* Recoverable Queue
-* Multicast
-
-!SLIDE
-# Drip
-## Write bullet
-
-* write(obj, *tags)
+* Drip (2011) = Immutable datastore
 
 !SLIDE bullets
 # Drip
-## Read
 
-* read(key, n=1, at\_least=1, timeout=nil)
-* head, older, newer, read\_tag
+* gem install drip
+
+!SLIDE bullets incremental
+
+# Drip
+## Immutable datastore
+
+* Append Only
+* Each data has key as time stamp
+* Can traverse older/newer
+* Can add "Tag"
+
+!SLIDE bullet
+# Drip
+## write(value, *tags)
+
+    @@@ruby
+    MyDrip.write(20, 'seki.age', 'male')
+    MyDrip.write(14, 'sora_h', 'male')
+    MyDrip.write(29, 'kate', 'female')
+
+!SLIDE bullets
+# Drip
+## read(key, n=1, at\_least=1, timeout=nil)
+
+    @@@ruby
+    k = 0
+    while k 
+      sleep 2
+      r = MyDrip.read(k, 4, 1, 2)
+      pp r; puts "\n"
+      k = r[-1][0]
+    end
 
 !SLIDE
 # Drip
-## Example
-
-![](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/drip.png)
+## head(n=1, tag=nil)
+  
+    @@@ruby
+    k,v, *tags = MyDrip.head(1, 'male')[0]
+    # => [1333437978553705, 30, "will", "male"]
 
 !SLIDE
+# Drip
+## older(key, tag=nil)
+
+    @@@ruby
+    k,v, *tags = MyDrip.older(k, 'male')
+
+!SLIDE bullets
+# Drip(Example)
+
+* [http://www.screenr.com/9X18](http://www.screenr.com/9X18)
+
+  <iframe src="http://www.screenr.com/embed/9X18" width="650" height="396" frameborder="0"></iframe>
+
+!SLIDE bullets incremental
+# Drip
+## other operations
+
+* newer
+* read_tag
+* []
+
+!SLIDE bullets incremental
+# Drip - use case
+
+* Hash with History
+* Recoverable Queue
+* Multicast Messaging
+* Tweets archive
+* Desktop search engine
+
+!SLIDE bullets incremental
 # Summary
 
 * dRuby = Feels like Ruby
@@ -306,9 +457,9 @@
 !SLIDE bullets
 # Thank you
 
-* PROMOCODE(20% off till 10th April)
+* CODE:dRubySeki2012 (20% off till 10th April)
 <a href="http://pragprog.com/book/sidruby/the-druby-book">
-!["the dRuby book"](https://github.com/makoto/demystifying_druby_lrug_april_2012/raw/master/slide/sidruby.jpeg)
+!["the dRuby book"](./slide/sidruby.jpeg)
 </a>
 * [@makoto_inoue](https://twitter.com/makoto_inoue) 
-
+* [https://github.com/makoto](https://github.com/makoto/demystifying_druby_lrug_april_2012)
