@@ -1,6 +1,10 @@
 .content {
   margin-top:50px;
 }
+.content.small{
+  font-size:30%;
+}
 .content::after {
   margin-top:50px;
+  width:100%;
 }

@@ -51,7 +51,7 @@
 
 * dRuby == Creative & fun
 * Mastering dRuby == Mastering Ruby
-* Please buy the book(promo code in the last slide)
+* <span class="small">Please buy the book(promo code in the last slide)</span>
 
 !SLIDE bullets incremental
 
@@ -95,6 +95,7 @@
     
     @@@ ruby
     DRb.start_service(uri, Puts.new)                            
+    DRb.thread.join()
 
 !SLIDE
 # Basics of dRuby
@@ -202,7 +203,7 @@
 
 * method_missing as proxy
 * Marshal.dump everything
-* If failed to dump, pass reference
+* If failed, dump DRbObject
 
 !SLIDE bullets incremental
 # Pass by Value, Pass by Reference
@@ -306,8 +307,9 @@
 !SLIDE bullets incremental
 # Rinda
 
-* Process Coordination Mechanism
+* Part of Ruby standard libraries
 * Port of Linda
+* Process Coordination Mechanism
 * Distributed TupleSpace
 * Share via dRuby
 
