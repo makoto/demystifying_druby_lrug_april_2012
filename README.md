@@ -483,7 +483,6 @@
 !SLIDE bullets
 # Thank you
 
-* CODE:dRubySeki2012 (20% off till 10th April)
 <a href="http://pragprog.com/book/sidruby/the-druby-book">
 !["the dRuby book"](./slide/sidruby.jpeg)
 </a>
