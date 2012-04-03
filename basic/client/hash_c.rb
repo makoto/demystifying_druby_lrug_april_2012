@@ -2,9 +2,9 @@
 require 'drb'
 require 'pp'
 DRb.start_service
-remote = DRbObject.new_with_uri('druby://localhost:7640')
+remote = DRbObject.new_with_uri('druby://:7640')
 
-remote['cilent_proc'] = Proc.new{ `pwd`}
+client_proc = Proc.new{`pwd`}
+remote['client_proc'] = client_proc
 
-remote['server_proc'][]
-remote['clientproc'][]
+DRb.thread.join

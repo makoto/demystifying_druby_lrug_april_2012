@@ -14,14 +14,10 @@ class Puts
 
   def puts(str)
     @stream.puts(str)
+    str
   end
 end
-uri = ARGV.shift
-DRb.start_service(uri, Puts.new)                            
+
+DRb.start_service('druby://:12345', Puts.new)                            
 puts DRb.uri
 DRb.thread.join()
-
-
-# From Client
-# require 'drb'
-# there = DRbObject.new_with_uri('druby://localhost:12345')

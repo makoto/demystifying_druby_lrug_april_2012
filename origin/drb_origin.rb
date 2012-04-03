@@ -1,19 +1,19 @@
 =begin
  Tiny distributed Ruby --- dRuby
- ODRb --- dRuby module.
- ODRbProtocol --- Mixin class.
- ODRbObject --- dRuby remote object.
- ODRbConn --- 
- ODRbServer --- dRuby message handler.
+ DRb --- dRuby module.
+ DRbProtocol --- Mixin class.
+ DRbObject --- dRuby remote object.
+ DRbConn --- 
+ DRbServer --- dRuby message handler.
 =end
 
 require 'socket'
 
-module ODRb
+module DRb
   def start_service(uri, front=nil)
     @uri = uri.to_s
     @front = front
-    @server = ODRbServer.new(@uri)
+    @server = DRbServer.new(@uri)
     @thread = @server.run
   end
   module_function :start_service
@@ -28,7 +28,7 @@ module ODRb
   module_function :front
 end
 
-module ODRbProtocol
+module DRbProtocol
   def parse_uri(uri)
     if uri =~ /^druby:\/\/(.+?):(\d+)/
       host = $1
@@ -43,7 +43,7 @@ module ODRbProtocol
     begin
       str = Marshal::dump(obj)
     rescue
-      ro = ODRbObject.new(obj)
+      ro = DRbObject.new(obj)
       str = Marshal::dump(ro)
     end
     soc.write(str) if soc
@@ -87,14 +87,15 @@ module ODRbProtocol
   end
 end
 
-class ODRbObject
+class DRbObject
   def initialize(obj, uri=nil)
-    @uri = uri || ODRb.uri
+    @uri = uri || DRb.uri
     @ref = obj.id if obj
   end
 
   def method_missing(msg_id, *a)
-    succ, result = ODRbConn.new(@uri).send_message(self, msg_id, *a)
+    succ, result = DRbConn.new(@uri).
+      send_message(self, msg_id, *a)
     raise result if ! succ
     result
   end
@@ -102,8 +103,8 @@ class ODRbObject
   attr :ref
 end
 
-class ODRbConn
-  include ODRbProtocol
+class DRbConn
+  include DRbProtocol
 
   def initialize(remote_uri)
     @host, @port = parse_uri(remote_uri)
@@ -121,8 +122,8 @@ class ODRbConn
   end
 end
 
-class ODRbServer
-  include ODRbProtocol
+class DRbServer
+  include DRbProtocol
 
   def initialize(uri)
     @host, @port = parse_uri(uri)
@@ -148,7 +149,7 @@ class ODRbServer
 	  if ro and ro.ref
 	    obj = ObjectSpace._id2ref(ro.ref)
 	  else
-	    obj = ODRb.front
+	    obj = DRb.front
 	  end
 	  result = obj.__send__(msg.intern, *argv)
 	  succ = true
