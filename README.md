@@ -476,6 +476,7 @@
 * dRuby = Feels like Ruby
 * Rinda = Cool pattern matching
 * Drip = Immutable datastore
+* [name of your cool new distributed tools]
 
 !SLIDE bullets
 # Thank you
